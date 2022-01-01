@@ -1,0 +1,33 @@
+.top{
+    background-color: #440000;
+}
+.order{
+    background-color: #440000;
+    margin-bottom: 2px;
+    color: white;
+}
+.order:hover{
+    background-color: green;
+    color: white;
+}
+footer{
+    background-color: #440000;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: rgb(138, 133, 133);
+}
+.menubutton{
+    width: 100px;
+    background-color: #440000;
+    color: white;
+}
+.menubutton:hover{
+    background-color: green;
+    color: white;
+}
+.sidebutton{
+    border-radius: 5px;
+}
+.slide{
+    height: 60vh;
+}
