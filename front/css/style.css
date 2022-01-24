@@ -31,3 +31,8 @@ footer{
 .slide{
     height: 60vh;
 }
+
+.posted{
+    border-radius: 5%;
+    height: 250px;
+}
