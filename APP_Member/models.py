@@ -4,13 +4,12 @@ from django.contrib.auth.models import User
 
 class Student(models.Model):
     Faculty = [
-        ('cse', 'CSE'),
-        ('agri', 'Agriculture'),
-        ('bba', 'BBA'),
-        ('ansvm', 'ANSVM'),
-        ('fisheries', 'Fisheries'),
-        ('esdm', 'ESDM'),
-        ('lla', 'LLA'),
+        ('CSE', 'CSE'),
+        ('Agri', 'Agriculture'),
+        ('BBA', 'BBA'),
+        ('Fisheries', 'Fisheries'),
+        ('ESDM', 'ESDM'),
+        ('LLA', 'LLA'),
     ]
     Gender = [
         ('male', 'Male'),

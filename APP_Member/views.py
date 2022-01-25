@@ -7,7 +7,11 @@ from .models import Student
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'main.html')
+
+
+def contact(request):
+    return render(request, 'contact.html')
 
 
 def login_user(request):
@@ -28,14 +32,31 @@ def logout_user(request):
 
 @login_required(login_url='login')
 def profile(request):
+    try:
+        user_profile = Student.objects.get(user=request.user)
+        return render(request, 'profile.html', {'user_profile': user_profile})
+    except:
+        return redirect('register')
 
-    profile_check = Student.objects.get(user=request.user)
 
+@login_required(login_url='login')
+def register(request):
     if request.method == 'POST':
         form = Student_form(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('index')
+            user = request.user
+            name = form.cleaned_data['name']
+            faculty = form.cleaned_data['faculty']
+            session = form.cleaned_data['session']
+            gender = form.cleaned_data['gender']
+            upazila = form.cleaned_data['upazila']
+            phone = form.cleaned_data['phone']
+            blood = form.cleaned_data['blood']
+
+            Student.objects.create(user=user,name=name,faculty=faculty,session=session,gender=gender,upazila=upazila,phone=phone,blood=blood)
+
+            return redirect('profile')
     else:
         form = Student_form()
 
-    return render(request, 'form.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
