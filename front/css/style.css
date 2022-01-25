@@ -3,7 +3,6 @@
 }
 .lekha{
     color: white;
-    font-weight: bold;
     text-shadow: #092958;
 }
 .menu{
@@ -27,7 +26,7 @@
     color: white;
 }
 footer{
-    background-color: #440000;
+    background-color: #092958;
     padding-top: 20px;
     padding-bottom: 20px;
     color: rgb(138, 133, 133);
