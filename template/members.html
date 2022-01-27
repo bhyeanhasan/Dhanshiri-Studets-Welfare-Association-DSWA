@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+
+{% block title %}Members{% endblock %}
+
+{% block content %}
+
+    {% for student in students %}
+        <div class="">
+                    <h>{{ student.name }}</h>
+        </div>
+    {% endfor %}
+
+{% endblock %}

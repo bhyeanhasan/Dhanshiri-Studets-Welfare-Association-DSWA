@@ -1,21 +1,53 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends "../main.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
 {% block content %}
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        <input name="username">
-        <input name="password">
-        <button type="submit">Login</button>
-    </form>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6 p-5 mt-5 mb-5 profile-box  ">
+
+                <h5 class="text-center">User Login</h5>
+                <div class="">
+                    {% for message in messages %}
+
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+
+                            <div>
+                                {{ message }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+                <hr>
+                <form method="post">
+                    {% csrf_token %}
+                    <h6 class="m-2">Username:</h6>
+                    <input class="m-2 form-control" name="username" required type="text">
+                    <h6 class="m-2">Password:</h6>
+                    <input class="m-2 mb-4 form-control" name="password" required type="password">
+                    <div class="text-center">
+
+                        <button style="width: 100px" class="m-2 btn btn-info p-2" type="submit">Login</button>
+                    </div>
+                    <div class="text-end">
+                        <a href="#">Forgot Password</a>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col-md-3 "></div>
+
+        </div>
+    </div>
+
 {% endblock %}
-</body>
-</html>
+
+

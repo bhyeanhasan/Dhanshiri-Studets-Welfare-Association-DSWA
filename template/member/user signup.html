@@ -1,21 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "../main.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
 
-<div class="">
-    <form method="post" action="{% url 'user_signup' %}">
-        {% csrf_token %}
-        <input name="username" type="text">
-        <input name="email" type="email">
-        <input name="password" type="password">
-        <input name="password2" type="password">
-        <input type="submit">
-    </form>
-</div>
+{% block content %}
 
-</body>
-</html>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6 p-5 mt-5 mb-5 profile-box  ">
+
+                <h5 class="text-center">User Registration</h5>
+                <hr>
+                                <div class="mt-2">
+                    {% for message in messages %}
+
+                        <div class="profile-box alert alert-danger d-flex align-items-center" role="alert">
+
+                            <div>
+                                {{ message }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+                <div class="">
+                    <form method="post" action="{% url 'user_signup' %}">
+                        {% csrf_token %}
+                        <h6>Username:</h6>
+                        <input class="form-control " name="username" type="text" required>
+                        <h6>Email:</h6>
+                        <input class="form-control" name="email" type="email" required>
+                        <h6>Password:</h6>
+                        <input class="form-control" name="password" type="password" required>
+                        <h6>Confirm Password:</h6>
+                        <input class="form-control" name="password2" type="password" required>
+
+                        <div class="text-center">
+                            <input class="btn btn-success profile-box mt-3" type="submit" value="Sign Up">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-3"></div>
+
+        </div>
+    </div>
+
+{% endblock %}
+

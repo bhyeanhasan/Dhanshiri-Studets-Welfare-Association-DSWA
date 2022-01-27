@@ -1,35 +1,95 @@
+{% extends "../main.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
+{% block title %}Update{% endblock %}
 
-<div class="container">
-    <div class="row">
-        <div class="col">
+{% block content %}
 
-        </div>
-        <div class="col">
-            <form class="mt-5" action="{% url 'update' %}" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-        <div class="col">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="message">
+
+                    {% for message in messages %}
+                        <div class="w-100 m-2 text-center alert alert-warning" role="alert">
+                            <h5 style="color:red;">{{ message }}</h5>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 mt-5 mb-5">
+                <div class="  mb-4 ">
+                    {% if student.picture %}
+                        <div class="text-center">
+                            <img class="update-pic img-fluid" src="{{ student.picture.url }}">
+                        </div>
+                    {% else %}
+                        <div class="text-center">
+                            <img class=" update-pic image-fluid" src="{% static 'image/profile.jpg' %}">
+                        </div>
+                    {% endif %}
+
+                    <hr>
+
+                    <form class="profile-box" enctype="multipart/form-data" action="{% url 'update_image' %}" method="post">
+                        {% csrf_token %}
+                        <input class="form-control" type="file" name="picture">
+                        <input class="btn btn-danger form-control mt-2" type="submit" value="Change Profile Picture">
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-5 mt-5 mb-5">
+                <div class="border profile-box  p-4 mb-3">
+                    <h5 class="text-center">Update Basic Info</h5>
+                    <hr>
+                    <form enctype="multipart/form-data" action="{% url 'update' %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input class="btn btn-info form-control" type="submit" value="Update Info">
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-5 mb-5">
+
+                <div class="border profile-box p-4 mb-4">
+                    <h6 class="text-center ">Update Password</h6>
+                    <hr>
+                    <form enctype="multipart/form-data" action="{% url 'update_pass' %}" method="post">
+                        {% csrf_token %}
+                        <input class="my-2 form-control" type="password" name="oldpass" placeholder="Old Password">
+                        <input class="my-2 form-control" type="password" name="pass1" placeholder="New Password">
+                        <input class="my-2 form-control" type="password" name="pass2" placeholder="Confirm Password">
+                        <input class="my-2 btn btn-danger form-control mt-2" type="submit" value="Change Password">
+                    </form>
+
+                </div>
+
+                <div class="border profile-box p-4 mb-4">
+                    <h6 class="text-center ">Update Email</h6>
+                    <hr>
+
+                    <form enctype="multipart/form-data" action="{% url 'update_email' %}" method="post">
+                        {% csrf_token %}
+                        <a>Change : {{ user.email }}</a>
+                        <input class="my-2 form-control" type="email" name="email" placeholder="New Email">
+                        <input class="my-2 btn btn-danger form-control mt-2" type="submit" value="Change Email">
+                    </form>
+
+                </div>
+
+            </div>
 
         </div>
     </div>
-</div>
+
+{% endblock %}
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+

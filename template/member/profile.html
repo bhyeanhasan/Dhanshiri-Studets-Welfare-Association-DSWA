@@ -1,21 +1,106 @@
+{% extends "../main.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>profile</title>
-</head>
-<body>
-{{ user_profile.name }}
-{{ user_profile.blood }}
-{{ user_profile.faculty }}
-{{ user_profile.session }}
-{{ user_profile.blood }}
-{{ user_profile.upazila }}
-{{ user_profile.phone }}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                {% if user_profile.is_approved == False %}
+                    <div class="profile-box alert alert-danger mt-3" role="alert">
+                       আপনার একাউন্ট বর্তমানে এক্টিভ নয়। আপনার দেওয়া তথ্যের যাচাই পক্রিয়া চলছে,দয়া করে এডমিন এপ্রুভালের জন্য অপেক্ষা করুন।
+                         <a href="{% url 'contact' %}">যোগাযোগ</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-3">
+
+            </div>
+
+            <div class="profile-box col-md-6 p-3 px-3 my-3">
+                {% if user_profile.picture %}
+                    <div class="text-center">
+                        <img class=" update-pic image-fluid" src="{{ user_profile.picture.url }}">
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <img class=" update-pic image-fluid" src="{% static 'image/profile.jpg' %}">
+                    </div>
+                {% endif %}
 
 
-<a href="{% url 'update' %}">Edit</a>
+                <div class="profile-body ">
+                    <div class="text-center mt-2">
+                        <h5>{{ user_profile.name }}</h5>
+                        <h6 style="color: #00a148" class="">{{ user_profile.designation }}</h6>
+                        <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
+                        <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
+                    </div>
 
-</body>
-</html>
+
+                    <table class="table table-striped my-3">
+
+                        <tbody>
+
+                        <tr>
+                            <th><i class="bi bi-mortarboard"></i> ফ্যাকাল্টিঃ</th>
+                            <td>{{ user_profile.faculty }}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="bi bi-calendar-check"></i> সেশনঃ</th>
+                            <td>{{ user_profile.session }}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="bi bi-geo-alt"></i> উপজেলাঃ</th>
+                            <td>{{ user_profile.upazila }}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="bi bi-signpost-split"></i> ঠিকানাঃ</th>
+                            <td>{{ user_profile.address }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col"><i class="bi bi-heart"></i> ব্লাড গ্রুপঃ</th>
+                            <td scope="col">{{ user_profile.blood }}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="bi bi-telephone"></i> ফোনঃ</th>
+                            <td>{{ user_profile.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="bi bi-envelope-plus"></i> ইমেইলঃ</th>
+                            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                        </tr>
+
+
+                        </tbody>
+
+                    </table>
+                    <div class="text-end">
+                                            <a class="profile-box btn btn-danger" href="{% url 'update' %}">Edit Profile</a>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="col-md-3"></div>
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+

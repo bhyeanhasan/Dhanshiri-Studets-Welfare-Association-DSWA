@@ -1,13 +1,16 @@
-.top{
+.top {
     background-color: #092958;
 }
-.lekha{
+
+.lekha {
     color: white;
     text-shadow: #092958;
 }
-.menu{
+
+.menu {
     background-color: #004763;
 }
+
 .navbar-light .navbar-brand {
     color: white;
 }
@@ -16,73 +19,89 @@
     color: white;
 }
 
-.order{
+.order {
     background-color: #440000;
     margin-bottom: 2px;
     color: white;
 }
-.order:hover{
+
+.order:hover {
     background-color: green;
     color: white;
 }
 
-a{
+a {
     color: green;
     text-decoration: none;
 }
 
 
+.carousel-caption {
+    border-radius: 50px;
+    background-color: rgba(43, 40, 40, 0.4)
+}
 
 
-    .carousel-caption{
-        border-radius: 50px;
-        background-color: rgba(43,40,40,0.4)
-    }
-
-
-
-footer{
+footer {
     background-color: #092958;
     padding-top: 20px;
     padding-bottom: 20px;
     color: rgb(138, 133, 133);
 }
-.menubutton{
+
+.menubutton {
     width: 100px;
     background-color: #0a2a53;
     color: white;
 }
-.menubutton:hover{
+
+.menubutton:hover {
     background-color: #00a148;
     color: white;
 }
-.sidebutton{
+
+.sidebutton {
     border-radius: 5px;
 }
-.slide{
+
+.slide {
     height: 80vh;
 }
-.slide2{
+
+.slide2 {
     height: 80vh;
     padding: 20px;
 }
 
-.posted{
+.posted {
     border-radius: 5%;
     height: 250px;
 }
+
 /*-----------------------------------------------------*/
-.developer{
-    padding: 20px;
-    border-radius: 20px;
-    border-style: solid;
-    border-color: #0a2a53;
-    background-color: white;
+.developer {
+
 
 }
-.developer-img{
+
+.developer-img {
     border-radius: 50px;
     height: 320px;
     width: 320px;
     box-shadow: white;
+}
+
+.update-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.profile-body {
+
+}
+
+.profile-box {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
