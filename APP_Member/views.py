@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .form import Student_form
 from .models import Student
 
@@ -53,9 +53,9 @@ def register(request):
             upazila = form.cleaned_data['upazila']
             phone = form.cleaned_data['phone']
             blood = form.cleaned_data['blood']
+            address = form.cleaned_data['address']
 
-            Student.objects.create(user=user, name=name, faculty=faculty, session=session, gender=gender,
-                                   upazila=upazila, phone=phone, blood=blood)
+            Student.objects.create(user=user, name=name, faculty=faculty, session=session, gender=gender,upazila=upazila, phone=phone, blood=blood,address=address)
 
             return redirect('profile')
     else:
@@ -70,7 +70,6 @@ def user_signup(request):
         email = request.POST['email']
         pass1 = request.POST['password']
         pass2 = request.POST['password2']
-        print(username + email + pass1 + pass2)
         if pass1 == pass2:
             User.objects.create_user(username, email, pass1)
             return redirect('register')
@@ -82,22 +81,28 @@ def user_signup(request):
 
 def update(request):
     student = Student.objects.get(user=request.user)
+    print(student)
+    form = Student_form(request.POST or None, instance=student)
+    if form.is_valid():
+        user = request.user
+        name = form.cleaned_data['name']
+        faculty = form.cleaned_data['faculty']
+        session = form.cleaned_data['session']
+        gender = form.cleaned_data['gender']
+        upazila = form.cleaned_data['upazila']
+        address = form.cleaned_data['address']
+        phone = form.cleaned_data['phone']
+        blood = form.cleaned_data['blood']
 
-    if request.method == 'POST':
-        name = request.POST['name']
-        faculty = request.POST['faculty']
-        session = request.POST['session']
-        gender = request.POST['gender']
-        upazila = request.POST['upazila']
-        phone = request.POST['phone']
-        blood = request.POST['blood']
         student.name = name
         student.faculty = faculty
         student.session = session
         student.gender = gender
         student.upazila = upazila
+        student.address = address
         student.phone = phone
         student.blood = blood
+
         student.save()
-        return redirect('profile')
-    return render(request,'member/update profile.html')
+
+    return render(request, 'member/update.html', {'form': form})
