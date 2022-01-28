@@ -1,3 +1,5 @@
+python manage.py runserver 0.0.0.0:8000
+
 <?php
 include 'Database/Connection.php';
 include 'Template/htmlHeader.php';
