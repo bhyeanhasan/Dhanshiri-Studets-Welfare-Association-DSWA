@@ -1,13 +1,49 @@
 {% extends "main.html" %}
+{% load static %}
 
 {% block title %}Members{% endblock %}
 
 {% block content %}
 
-    {% for student in students %}
-        <div class="">
-                    <h>{{ student.name }}</h>
+    <div class="container">
+        <div class="row">
+            {% for student in students %}
+                <div class="col-md-3">
+                    <div class="members m-2 p-3 text-center profile-box">
+
+                        {% if student.picture %}
+                            <img class="img-fluid" src="{{ student.picture.url }}">
+                        {% else %}
+                            <img class="img-fluid" src="{% static 'image/profile.jpg' %}">
+
+                        {% endif %}
+
+
+                        <div class="mt-1">
+                            {% if student.department  %}
+
+                                <h6 class="text-bold">{{ student.name }}</h6>
+                                <h6 class="text-bold">{{ student.designation }}</h6>
+                                <h6 class="text-bold">{{ student.department }}</h6>
+                                <h6><i class="bi bi-geo-alt-fill"></i> {{ student.upazila }} <span><i
+                                        class="bi bi-mortarboard-fill"></i> {{ student.faculty }}</span></h6>
+
+                            {% else %}
+                                <h6 class="text-bold">{{ student.name }}</h6>
+                                <h6><i class="bi bi-geo-alt-fill"></i> {{ student.upazila }}</h6>
+
+                                <h6><i class="bi bi-calendar-check-fill"></i> {{ student.session }} <span><i
+                                        class="bi bi-mortarboard-fill"></i> {{ student.faculty }}</span></h6>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+
         </div>
-    {% endfor %}
+    </div>
+
+
 
 {% endblock %}

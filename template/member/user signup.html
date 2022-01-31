@@ -13,7 +13,7 @@
 
                 <h5 class="text-center">User Registration</h5>
                 <hr>
-                                <div class="mt-2">
+                <div class="mt-2">
                     {% for message in messages %}
 
                         <div class="profile-box alert alert-danger d-flex align-items-center" role="alert">
@@ -33,6 +33,17 @@
                         <input class="form-control " name="username" type="text" required>
                         <h6>Email:</h6>
                         <input class="form-control" name="email" type="email" required>
+                        <div class="my-2">
+                            <h6>Are you a teacher?</h6>
+                            <div class="form-check">
+                                <input name="user_type" class="form-check-input" type="checkbox" value="teacher"
+                                       id="teacher">
+                                <label style="color: red" class="form-check-label" for="teacher">
+                                    (Only Teacher)
+                                </label>
+                            </div>
+                        </div>
+
                         <h6>Password:</h6>
                         <input class="form-control" name="password" type="password" required>
                         <h6>Confirm Password:</h6>

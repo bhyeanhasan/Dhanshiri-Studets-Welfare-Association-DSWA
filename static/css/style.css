@@ -2,6 +2,10 @@
     background-color: #092958;
 }
 
+.toplogo{
+    display: flex;
+}
+
 .lekha {
     color: white;
     text-shadow: #092958;
@@ -50,7 +54,6 @@ footer {
 }
 
 .menubutton {
-    width: 100px;
     background-color: #0a2a53;
     color: white;
 }
@@ -104,4 +107,18 @@ footer {
 .profile-box {
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.members{
+    background-color: whitesmoke;
+}
+.members img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 700px) {
+    .toplogo{
+        display: none;
+    }
 }

@@ -1,38 +1,37 @@
 from django import forms
-from .models import Student
+from .models import Student,Teacher
 
 
 class Student_form(forms.ModelForm):
     class Meta:
         Faculty = [
-            ('cse', 'CSE'),
-            ('agri', 'Agriculture'),
-            ('bba', 'BBA'),
-            ('ansvm', 'ANSVM'),
-            ('fisheries', 'Fisheries'),
-            ('esdm', 'ESDM'),
-            ('lla', 'LLA'),
+            ('CSE', 'CSE'),
+            ('Agri', 'Agriculture'),
+            ('BBA', 'BBA'),
+            ('Fisheries', 'Fisheries'),
+            ('ESDM', 'ESDM'),
+            ('LLA', 'LLA'),
         ]
         Gender = [
-            ('male', 'Male'),
-            ('female', 'Female'),
-            ('others', 'Others'),
+            ('Male', 'Male'),
+            ('Female', 'Female'),
+            ('Others', 'Others'),
         ]
         Upazila = [
-            ('Jhalokathi_sadar', 'Jhalokathi Sadar'),
-            ('nalcity', 'Nalcity'),
-            ('rajapur', 'Rajapur'),
-            ('kathalia', 'Kathalia'),
+            ('Jhalokathi Sadar', 'Jhalokathi Sadar'),
+            ('Nalcity', 'Nalcity'),
+            ('Rajapur', 'Rajapur'),
+            ('Kathalia', 'Kathalia'),
         ]
         Blood = [
-            ('a+', 'A+'),
-            ('a-', 'A-'),
-            ('b+', 'B+'),
-            ('b-', 'B-'),
-            ('o+', 'O+'),
-            ('o-', 'O-'),
-            ('ab+', 'AB+'),
-            ('ab-', 'AB-'),
+            ('A+', 'A+'),
+            ('A-', 'A-'),
+            ('B+', 'B+'),
+            ('B-', 'B-'),
+            ('O+', 'O+'),
+            ('O-', 'O-'),
+            ('AB+', 'AB+'),
+            ('AB-', 'AB-'),
         ]
         model = Student
         fields = ['name', 'faculty', 'session', 'gender', 'upazila', 'address', 'phone', 'blood', ]
@@ -46,3 +45,39 @@ class Student_form(forms.ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control', }),
             'blood': forms.Select(choices=Blood,attrs={'class': 'form-control', }),
         }
+
+class Teacher_form(forms.ModelForm):
+    class Meta:
+        Faculty = [
+            ('CSE', 'CSE'),
+            ('Agri', 'Agriculture'),
+            ('BBA', 'BBA'),
+            ('Fisheries', 'Fisheries'),
+            ('ESDM', 'ESDM'),
+            ('LLA', 'LLA'),
+        ]
+        Designation = [
+            ('Professor', 'Professor'),
+            ('Associate Professor', 'Associate Professor'),
+            ('Assistant Professor', 'Assistant Professor'),
+            ('Lecturer', 'Lecturer'),
+        ]
+        Upazila = [
+            ('Jhalokathi Sadar', 'Jhalokathi Sadar'),
+            ('Nalcity', 'Nalcity'),
+            ('Rajapur', 'Rajapur'),
+            ('Kathalia', 'Kathalia'),
+        ]
+
+        model = Teacher
+        fields = ['name','designation', 'faculty','department', 'upazila', 'address', 'phone' ]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', }),
+            'faculty': forms.Select(choices=Faculty, attrs={'class': 'form-control', }),
+            'designation': forms.Select(choices=Designation,attrs={'class': 'form-control', }),
+            'upazila': forms.Select(choices=Upazila,attrs={'class': 'form-control', }),
+            'address': forms.TextInput(attrs={'class': 'form-control', }),
+            'phone': forms.TextInput(attrs={'class': 'form-control', }),
+            'department': forms.TextInput(attrs={'class': 'form-control', }),
+        }
+

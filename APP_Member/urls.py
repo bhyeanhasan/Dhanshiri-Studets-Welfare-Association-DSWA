@@ -16,6 +16,7 @@ urlpatterns = [
     path('update_pass', views.update_pass, name='update_pass'),
     path('update_email', views.update_email, name='update_email'),
     path('members', views.members, name='members'),
+    path('teacher', views.teacher, name='teacher'),
     path('alumni', views.alumni, name='alumni'),
     path('committee', views.committee, name='committee'),
 

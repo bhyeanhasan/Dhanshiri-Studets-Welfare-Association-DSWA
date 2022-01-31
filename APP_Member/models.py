@@ -59,12 +59,21 @@ class Teacher(models.Model):
     priority = models.IntegerField(default=1000)
 
     name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=20)
+    designation = models.CharField(max_length=100)
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     upazila = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=20, null=True, blank=True)
+    picture = models.ImageField(upload_to='profile pictures', null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} ; (approved ={self.is_approved} '
+        return f'{self.name} ; (approved ={self.is_approved})'
+
+
+class Notice(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now=True, blank=True, null=True)
+    tittle = models.CharField(max_length=1000)
+    body = models.CharField(max_length=10000)
+    picture = models.ImageField(blank=True, null=True)
