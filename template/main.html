@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'image/logo.png' %}" type="image/x-icon">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -206,35 +208,15 @@
                         Recent Notice
                     </div>
                     <div class="card-body" style="height:72vh; overflow-y: scroll;">
-                        <div class="div pt-1">
-                            <a href="#">২০২০-২০২১ শিক্ষাবর্ষে ১ম বর্ষ স্নাতক (সম্মান) শ্রেণিতে ভর্তি বিজ্ঞপ্তি</a>
+
+
+                        {% for notice in notices %}
+                                                    <div class="div pt-1">
+                            <a href="#">{{ notice.tittle }}</a>
                         </div>
-                        <div class="div pt-1">
-                            <a href="#">২০২০-২০২১ শিক্ষাবর্ষে ১ম বর্ষ স্নাতক (সম্মান) শ্রেণিতে ভর্তির নিয়মাবলী ও ভর্তি
-                                সংক্রান্ত
-                                সময়সূচী</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">GST মোবাইল নম্বর পরিবর্তনের আবেদন ফরম</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">ভুল কোটা নিবাচন সংক্রান্ত নোটিশ</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">Admission Circular for Foreign Students</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">প্রবাসী (কর্মরতদের সন্তান) কোটার জন্য প্রয়োজনীয় প্রমানাদির নমুনা কপি</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">প্রবাসী (কর্মরতদের সন্তান) কোটার জন্য প্রয়োজনীয় প্রমানাদির নমুনা কপি</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">প্রবাসী (কর্মরতদের সন্তান) কোটার জন্য প্রয়োজনীয় প্রমানাদির নমুনা কপি</a>
-                        </div>
-                        <div class="div pt-1">
-                            <a href="#">প্রবাসী (কর্মরতদের সন্তান) কোটার জন্য প্রয়োজনীয় প্রমানাদির নমুনা কপি</a>
-                        </div>
+
+                        {% endfor %}
+
 
                     </div>
                 </div>
