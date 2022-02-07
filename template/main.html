@@ -71,9 +71,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Gallery</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact & Support</a>
                     </li>
                 </ul>
@@ -211,9 +208,10 @@
 
 
                         {% for notice in notices %}
-                                                    <div class="div pt-1">
-                            <a href="#">{{ notice.tittle }}</a>
-                        </div>
+
+                            <div class="notice div ">
+                                <a style="" href="#">{{ notice.tittle }}</a>
+                            </div>
 
                         {% endfor %}
 

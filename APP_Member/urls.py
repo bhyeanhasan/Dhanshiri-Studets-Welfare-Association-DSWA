@@ -4,6 +4,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('registration/', include('django.contrib.auth.urls')),
     path('', views.index, name="index"),
     path('profile', views.profile, name="profile"),
     path('contact',views.contact, name='contact'),
@@ -19,5 +20,6 @@ urlpatterns = [
     path('teacher', views.teacher, name='teacher'),
     path('alumni', views.alumni, name='alumni'),
     path('committee', views.committee, name='committee'),
+    path('sendMail', views.sendMail, name='sendMail'),
 
 ]

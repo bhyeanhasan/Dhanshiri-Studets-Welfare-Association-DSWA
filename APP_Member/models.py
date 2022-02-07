@@ -72,8 +72,7 @@ class Teacher(models.Model):
 
 
 class Notice(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now=True, blank=True, null=True)
     tittle = models.CharField(max_length=1000)
     body = models.CharField(max_length=10000)
-    picture = models.ImageField(blank=True, null=True)

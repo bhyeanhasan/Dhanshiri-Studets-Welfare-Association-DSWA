@@ -2,14 +2,15 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from .form import Student_form, Teacher_form
-from .models import Student, Teacher
+from .models import Student, Teacher, Notice
 
 
 def index(request):
-    return render(request, 'main.html')
+    notices = Notice.objects.all()
+    return render(request, 'main.html',{'notices':notices})
 
 
 def contact(request):
@@ -262,3 +263,67 @@ def update_email(request):
     student.save()
     messages.info(request, 'Email Changed')
     return redirect('update')
+
+
+def sendMail(request):
+    send_mail(
+        'ঈদ মুবারাক',
+        'প্রিয় সহপাঠি,\n\nঈদুল আযহার শুভেচ্ছা গ্রহন করুন। করোনা প্যানাডেমিক এর কারনে দীর্ঘ দিন আপনার সাথে দেখা হচ্ছে না, কথা হচ্ছে না। সবাই এই আনলিমিটেড বন্ধ নামক প্যারায় অতিষ্ট হইয়ে ঊঠছে। আশা করি খুব দ্রুত পৃথীবি সুস্থ হয়ে উঠবে, আমরা আবার আমাদের ভালবাসার ক্যাম্পাসে প্রিয় ক্লাসরুমে একত্রিত হতে পারব। \n\nআপনার সুস্বাস্থ কামনা করছি, মানষিক অবসাদ এরাতে ধর্মিয় কাজ কর্মে মন দিন, বই পরুন , নিজেকে টুকটাক কাজে ব্যাস্ত রাখুন \n\nইতি,\nআপনার শুভাকাঙ্খি বন্ধু\nনয়ন।',
+        'oboyob16.official@gmail.com',
+        [
+            'bhyean@gmail.com',
+            'bhyean16@cse.pstu.ac.bd',
+            # 'tonmoy16@cse.pstu.ac.bd',
+            # 'taj16@cse.pstu.ac.bd',
+            # 'anirban16@cse.pstu.ac.bd',
+            # 'adi16@cse.pstu.ac.bd',
+            # 'shifar16@cse.pstu.ac.bd',
+            # 'arahman16@cse.pstu.ac.bd',
+            # 'abhishek16@cse.pstu.ac.bd',
+            # 'alamen15@cse.pstu.ac.bd',
+            # 'alihossain16@cse.pstu.ac.bd',
+            # 'amirul16@cse.pstu.ac.bd',
+            # 'anik16@cse.pstu.ac.bd',
+            # 'arjon16@cse.pstu.ac.bd',
+            # 'ayshea16@cse.pstu.ac.bd',
+            # 'fariha16@cse.pstu.ac.bd',
+            # 'farzanaakter16@cse.pstu.ac.bd',
+            # 'oni16@cse.pstu.ac.bd',
+            # 'sajib16@cse.pstu.ac.bd',
+            # 'imad16@cse.pstu.ac.bd',
+            # 'hasan16@cse.pstu.ac.bd',
+            # 'jahid16@cse.pstu.ac.bd',
+            # 'shapla16@cse.pstu.ac.bd',
+            # 'lamia16@cse.pstu.ac.bd',
+            # 'mahfuz16@cse.pstu.ac.bd',
+            # 'orna16@cse.pstu.ac.bd',
+            # 'adnan16@cse.pstu.ac.bd',
+            # 'mithil16@cse.pstu.ac.bd',
+            # 'shefat16@cse.pstu.ac.bd',
+            # 'tahsin16@cse.pstu.ac.bd',
+            # 'rakib16@cse.pstu.ac.bd',
+            # 'jamiul16@cse.pstu.ac.bd',
+            # 'rakibul16@cse.pstu.ac.bd',
+            # 'rony16@cse.pstu.ac.bd',
+            # 'miran16@cse.pstu.ac.bd',
+            # 'shahriar16@cse.pstu.ac.bd',
+            # 'mehedihasan16@cse.pstu.ac.bd',
+            # 'almuzahid16@cse.pstu.ac.bd',
+            # 'nazmul16@cse.pstu.ac.bd',
+            # 'partha16@cse.pstu.ac.bd',
+            # 'sejan16@cse.pstu.ac.bd',
+            # 'ruhitshah16@cse.pstu.ac.bd',
+            # 'sabbirmim16@cse.pstu.ac.bd',
+            # 'skrakib16@cse.pstu.ac.bd',
+            # 'shishir16@cse.pstu.ac.bd',
+            # 'shyamsaikat16@cse.pstu.ac.bd',
+            # 'sifat16@cse.pstu.ac.bd',
+            # 'sourav16@cse.pstu.ac.bd',
+            # 'tahmid16@cse.pstu.ac.bd',
+            # 'sonaly16@cse.pstu.ac.bd',
+            # 'tasnif16@cse.pstu.ac.bd',
+        ],
+        fail_silently=False,
+    )
+
+    return redirect('/')

@@ -2,7 +2,7 @@
     background-color: #092958;
 }
 
-.toplogo{
+.toplogo {
     display: flex;
 }
 
@@ -108,17 +108,29 @@ footer {
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.members{
+
+.members {
     background-color: whitesmoke;
 }
-.members img{
+
+.members img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
 
+.notice {
+    max-height: 105px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: 0 4px 8px 0 rgba(23, 135, 210, 0.17), 0 6px 20px 0 rgba(4, 198, 7, 0.19);
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
 @media only screen and (max-width: 700px) {
-    .toplogo{
+    .toplogo {
         display: none;
     }
 }
