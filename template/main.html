@@ -59,9 +59,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'alumni' %}">Alumni</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Advisor</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'teacher' %}">Teachers</a>
                     </li>
@@ -71,8 +69,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'notice' %}">Notice</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact & Support</a>
                     </li>
+
                 </ul>
 
 
@@ -90,7 +93,8 @@
                             <a class="btn m-1 menubutton" href="{% url 'login' %}">Sign In</a>
                         </li>
                         <li class="nav-item mb-1">
-                            <a class="btn  m-1  menubutton" aria-current="page" href="{% url 'user_signup' %}">Sign Up</a>
+                            <a class="btn  m-1  menubutton" aria-current="page" href="{% url 'user_signup' %}">Sign
+                                Up</a>
                         </li>
 
                     {% endif %}
@@ -210,7 +214,7 @@
                         {% for notice in notices %}
 
                             <div class="notice div ">
-                                <a style="" href="#">{{ notice.tittle }}</a>
+                                <a style="" href="{{ notice.get_absolute_url }}">{{ notice.title }}</a>
                             </div>
 
                         {% endfor %}
@@ -228,14 +232,24 @@
         <div class="row align-items-center">
             <div class="col-sm-3 mt-5 ">
                 <div class=" text-center">
-                    <img src="{% static 'image/sovapoti.jpg' %}" class="posted card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-title">নুরুজ্জামান তুহিন</h4>
-                        <h5 class="card-text"> সভাপতি</h5>
-                        <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
-                        <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
-                        <a href="#" class="btn"><i class="bi bi-telephone-forward-fill"></i> +880 1920599266</a>
-                    </div>
+
+                    {% if president %}
+                        {% if president.picture %}
+                            <img src="{{ president.picture.url }}" class="posted card-img-top" alt="...">
+                        {% else %}
+                            <img src="{% static 'image/profile.jpg' %}" class="posted card-img-top" alt="...">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h4 class="card-title">{{ president.name }}</h4>
+                            <h5 class="card-text"> সভাপতি</h5>
+                            <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
+                            <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
+                            <a href="#" class="btn"><i class="bi bi-telephone-forward-fill"></i> {{ president.phone }}
+                            </a>
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
 
@@ -270,14 +284,22 @@
 
             <div class="col-sm-3 mt-5">
                 <div class=" text-center">
-                    <img src="{% static 'image/sadha.jpg' %}" class="posted card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-title">তাওহীদ হোসাইন</h4>
-                        <h5 class="card-text"> সাধারন সম্পাদক</h5>
-                        <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
-                        <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
-                        <a href="#" class="btn "><i class="bi bi-telephone-forward-fill"></i> +880 1920599266</a>
-                    </div>
+                    {% if secretary %}
+
+                        {% if secretary.picture %}
+                            <img src="{{ secretary.picture.url }}" class="posted card-img-top" alt="...">
+                        {% else %}
+                            <img src="{% static 'image/profile.jpg' %}" class="posted card-img-top" alt="...">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h4 class="card-title">{{ secretary.name }}</h4>
+                            <h5 class="card-text"> সাধারন সম্পাদক</h5>
+                            <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
+                            <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
+                            <a href="#" class="btn "><i class="bi bi-telephone-forward-fill"></i> {{ secretary.phone }}</a>
+                        </div>
+                    {% endif %}
                 </div>
 
             </div>

@@ -10,8 +10,9 @@
             <div class="col-md-12">
                 {% if user_profile.is_approved == False %}
                     <div class="profile-box alert alert-danger mt-3" role="alert">
-                       আপনার একাউন্ট বর্তমানে এক্টিভ নয়। আপনার দেওয়া তথ্যের যাচাই পক্রিয়া চলছে,দয়া করে এডমিন এপ্রুভালের জন্য অপেক্ষা করুন।
-                         <a href="{% url 'contact' %}">যোগাযোগ</a>
+                        আপনার একাউন্ট বর্তমানে এক্টিভ নয়। আপনার দেওয়া তথ্যের যাচাই পক্রিয়া চলছে,দয়া করে এডমিন এপ্রুভালের
+                        জন্য অপেক্ষা করুন।
+                        <a href="{% url 'contact' %}">যোগাযোগ</a>
                     </div>
                 {% endif %}
             </div>
@@ -71,18 +72,21 @@
                         </tr>
                         <tr>
                             <th><i class="bi bi-envelope-plus"></i> ইমেইলঃ</th>
-                            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                            <td><a href="mailto:{{ user_profile.user.email }}">{{ user_profile.user.email }}</a></td>
                         </tr>
 
 
                         </tbody>
 
                     </table>
-                    <div class="text-end">
-                                            <a class="profile-box btn btn-danger" href="{% url 'update' %}">Edit Profile</a>
 
-                    </div>
+                    {% if user == user_profile.user %}
 
+                        <div class="text-end">
+                            <a class="profile-box btn btn-danger" href="{% url 'update' %}">Edit Profile</a>
+                        </div>
+
+                    {% endif %}
 
 
                 </div>

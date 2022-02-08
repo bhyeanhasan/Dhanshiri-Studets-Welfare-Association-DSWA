@@ -5,6 +5,54 @@
 
 {% block content %}
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class=" card">
+                    <div style="background-color: #004763;color: white" class="card-header text-center">
+                        Add Notice
+                    </div>
+                    <div class="card-body">
+
+                        <form class="m-3" action="{% url 'notice' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p>Title</p>
+                            <textarea required class="form-control m-1" name="title"></textarea>
+                            <p>Body</p>
+                            <textarea required class="form-control m-1" name="body"></textarea>
+                            <p>Images</p>
+                            <input class="m-1" name="images" type="file" multiple>
+                            <input class="m-1 form-control btn btn-info" type="submit" value="Submit">
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+
+                <div class=" card">
+                    <div style="background-color: #004763;color: white" class="card-header text-center">
+                        Recent Notice
+                    </div>
+                    <div class="card-body" style="height:72vh; overflow-y: scroll;">
+
+
+                        {% for notice in notices %}
+
+                            <div class="notice div ">
+                                <a style="" href="{{ notice.get_absolute_url }}">{{ notice.title }}</a>
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 

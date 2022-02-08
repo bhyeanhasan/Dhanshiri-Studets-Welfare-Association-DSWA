@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student,Teacher
+from .models import Student, Teacher, Notice, NoticeImages
 
 
 class Student_form(forms.ModelForm):
@@ -39,12 +39,13 @@ class Student_form(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', }),
             'faculty': forms.Select(choices=Faculty, attrs={'class': 'form-control', }),
             'session': forms.TextInput(attrs={'class': 'form-control', }),
-            'gender': forms.Select(choices=Gender,attrs={'class': 'form-control', }),
-            'upazila': forms.Select(choices=Upazila,attrs={'class': 'form-control', }),
+            'gender': forms.Select(choices=Gender, attrs={'class': 'form-control', }),
+            'upazila': forms.Select(choices=Upazila, attrs={'class': 'form-control', }),
             'address': forms.TextInput(attrs={'class': 'form-control', }),
             'phone': forms.TextInput(attrs={'class': 'form-control', }),
-            'blood': forms.Select(choices=Blood,attrs={'class': 'form-control', }),
+            'blood': forms.Select(choices=Blood, attrs={'class': 'form-control', }),
         }
+
 
 class Teacher_form(forms.ModelForm):
     class Meta:
@@ -70,14 +71,16 @@ class Teacher_form(forms.ModelForm):
         ]
 
         model = Teacher
-        fields = ['name','designation', 'faculty','department', 'upazila', 'address', 'phone' ]
+        fields = ['name', 'designation', 'faculty', 'department', 'upazila', 'address', 'phone']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', }),
             'faculty': forms.Select(choices=Faculty, attrs={'class': 'form-control', }),
-            'designation': forms.Select(choices=Designation,attrs={'class': 'form-control', }),
-            'upazila': forms.Select(choices=Upazila,attrs={'class': 'form-control', }),
+            'designation': forms.Select(choices=Designation, attrs={'class': 'form-control', }),
+            'upazila': forms.Select(choices=Upazila, attrs={'class': 'form-control', }),
             'address': forms.TextInput(attrs={'class': 'form-control', }),
             'phone': forms.TextInput(attrs={'class': 'form-control', }),
             'department': forms.TextInput(attrs={'class': 'form-control', }),
         }
+
+
 

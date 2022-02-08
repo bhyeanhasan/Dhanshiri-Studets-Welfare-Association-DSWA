@@ -52,6 +52,9 @@ class Student(models.Model):
     def __str__(self):
         return f'{self.name} ; (approved ={self.is_approved} alumni = {self.is_alumni})'
 
+    def get_absolute_url(self):
+        return f"/profile/{self.user.username}/"
+
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -74,5 +77,17 @@ class Teacher(models.Model):
 class Notice(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now=True, blank=True, null=True)
-    tittle = models.CharField(max_length=1000)
-    body = models.CharField(max_length=10000)
+    title = models.TextField(max_length=1000)
+    body = models.TextField(max_length=10000,blank=True,null=True)
+
+    def get_absolute_url(self):
+        return f"/view/{self.id}/"
+
+    @property
+    def delete_notice(self):
+        return f"/delete_notice/{self.id}/"
+
+
+class NoticeImages(models.Model):
+    notice = models.ForeignKey(Notice, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to='notice', null=True, blank=True)

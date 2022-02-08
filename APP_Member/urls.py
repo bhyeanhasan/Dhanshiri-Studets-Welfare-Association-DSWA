@@ -7,6 +7,7 @@ urlpatterns = [
     path('registration/', include('django.contrib.auth.urls')),
     path('', views.index, name="index"),
     path('profile', views.profile, name="profile"),
+    path('profile/<username>/', views.profile_view, name="profile_view"),
     path('contact',views.contact, name='contact'),
     path('login',views.login_user, name='login'),
     path('logout',views.logout_user, name='logout'),
@@ -21,5 +22,8 @@ urlpatterns = [
     path('alumni', views.alumni, name='alumni'),
     path('committee', views.committee, name='committee'),
     path('sendMail', views.sendMail, name='sendMail'),
+    path('notice', views.notice, name='notice'),
+    path('view/<id>/', views.view, name='view'),
+    path('delete_notice/<id>/', views.delete_notice, name='delete_notice'),
 
 ]

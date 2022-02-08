@@ -5,12 +5,22 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from .form import Student_form, Teacher_form
-from .models import Student, Teacher, Notice
+from .models import Student, Teacher, Notice, NoticeImages
 
 
 def index(request):
+    try:
+        president = Student.objects.get(designation="President", is_alumni=False)
+    except:
+        president = None
+
+    try:
+        secretary = Student.objects.get(designation="Secretary", is_alumni=False)
+    except:
+        secretary = None
+
     notices = Notice.objects.all()
-    return render(request, 'main.html',{'notices':notices})
+    return render(request, 'main.html', {'notices': notices, 'president': president, 'secretary': secretary})
 
 
 def contact(request):
@@ -28,12 +38,12 @@ def teacher(request):
 
 
 def alumni(request):
-    students = Student.objects.filter(is_alumni=True).order_by('session')
+    students = Student.objects.filter(is_alumni=True, is_approved=True).order_by('session')
     return render(request, 'members.html', {'students': students})
 
 
 def committee(request):
-    students = Student.objects.filter(is_alumni=False).order_by('priority')
+    students = Student.objects.filter(is_alumni=False, is_approved=True).order_by('priority')
     return render(request, 'members.html', {'students': students})
 
 
@@ -69,6 +79,15 @@ def profile(request):
             user_profile = Teacher.objects.get(user=request.user)
             return render(request, 'member/teacher_profile.html', {'user_profile': user_profile})
         return redirect('register')
+
+
+def profile_view(request, username):
+    view_user = User.objects.get(username=username)
+    if view_user.first_name == "student":
+        user_profile = Student.objects.get(user=view_user)
+    else:
+        user_profile = Teacher.objects.get(user=view_user)
+    return render(request, 'member/profile.html', {'user_profile': user_profile})
 
 
 @login_required(login_url='login')
@@ -327,3 +346,34 @@ def sendMail(request):
     )
 
     return redirect('/')
+
+
+def notice(request):
+    if request.method == "POST":
+        files = request.FILES.getlist('images')
+        user = request.user
+        title = request.POST['title']
+        body = request.POST['body']
+        note_obj = Notice.objects.create(user=user, title=title, body=body)
+        for f in files:
+            NoticeImages.objects.create(notice=note_obj, images=f)
+
+    notices = Notice.objects.all()
+
+    return render(request, 'notice.html', {'notices': notices})
+
+
+def view(request, id):
+    notice_view = Notice.objects.get(id=id)
+    images = NoticeImages.objects.filter(notice=notice_view)
+    return render(request, 'view_notice.html', {"notice_view": notice_view, "images": images})
+
+
+def delete_notice(request, id):
+    notice_delete = Notice.objects.get(id=id)
+    images = NoticeImages.objects.filter(notice=notice_delete)
+    for image in images:
+        image.images.delete()
+        image.delete()
+    notice_delete.delete()
+    return redirect('notice')
