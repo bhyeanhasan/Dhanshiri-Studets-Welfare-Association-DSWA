@@ -348,15 +348,31 @@ def sendMail(request):
     return redirect('/')
 
 
+@login_required(login_url='login')
 def notice(request):
-    if request.method == "POST":
+    user = request.user
+
+    if user.first_name == "teacher":
+        try:
+            Profile = Teacher.objects.get(user=user)
+        except:
+            return redirect('profile')
+    else:
+        try:
+            Profile = Student.objects.get(user=user)
+        except:
+            return redirect('profile')
+
+    if request.method == "POST" and Profile.is_approved == True:
         files = request.FILES.getlist('images')
-        user = request.user
         title = request.POST['title']
         body = request.POST['body']
         note_obj = Notice.objects.create(user=user, title=title, body=body)
         for f in files:
             NoticeImages.objects.create(notice=note_obj, images=f)
+
+    if not Profile.is_approved:
+        messages.info(request, "Profile is not approved.You can't add a notice")
 
     notices = Notice.objects.all()
 
