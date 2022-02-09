@@ -8,6 +8,7 @@ class Student(models.Model):
         ('Agri', 'Agriculture'),
         ('BBA', 'BBA'),
         ('Fisheries', 'Fisheries'),
+        ('NFS', 'NFS'),
         ('ESDM', 'ESDM'),
         ('LLA', 'LLA'),
     ]

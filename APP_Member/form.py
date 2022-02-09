@@ -9,6 +9,7 @@ class Student_form(forms.ModelForm):
             ('Agri', 'Agriculture'),
             ('BBA', 'BBA'),
             ('Fisheries', 'Fisheries'),
+            ('NFS', 'NFS'),
             ('ESDM', 'ESDM'),
             ('LLA', 'LLA'),
         ]
