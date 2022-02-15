@@ -19,7 +19,7 @@ def index(request):
     except:
         secretary = None
 
-    notices = Notice.objects.all()
+    notices = Notice.objects.all().order_by("-id")
     return render(request, 'main.html', {'notices': notices, 'president': president, 'secretary': secretary})
 
 
@@ -38,12 +38,12 @@ def teacher(request):
 
 
 def alumni(request):
-    students = Student.objects.filter(is_alumni=True, is_approved=True).order_by('session')
+    students = Student.objects.filter(is_alumni=True, is_approved=True).order_by('session', 'priority')
     return render(request, 'members.html', {'students': students})
 
 
 def committee(request):
-    students = Student.objects.filter(is_alumni=False, is_approved=True).order_by('priority')
+    students = Student.objects.filter(is_alumni=False, is_approved=True).order_by('session', 'priority')
     return render(request, 'members.html', {'students': students})
 
 
@@ -374,14 +374,14 @@ def notice(request):
     if not Profile.is_approved:
         messages.info(request, "Profile is not approved.You can't add a notice")
 
-    notices = Notice.objects.all()
+    notices = Notice.objects.all().order_by("-id")
 
     return render(request, 'notice.html', {'notices': notices})
 
 
 def view(request, id):
     notice_view = Notice.objects.get(id=id)
-    images = NoticeImages.objects.filter(notice=notice_view)
+    images = NoticeImages.objects.filter(notice=notice_view).order_by("id")
     return render(request, 'view_notice.html', {"notice_view": notice_view, "images": images})
 
 

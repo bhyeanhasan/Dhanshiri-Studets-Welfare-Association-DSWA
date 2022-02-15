@@ -231,7 +231,7 @@
     <div class="container border-top border-bottom">
         <div class="row align-items-center">
             <div class="col-sm-3 mt-5 ">
-                <div class=" text-center">
+                <div class="posted_div text-center">
 
                     {% if president %}
                         {% if president.picture %}
@@ -297,7 +297,8 @@
                             <h5 class="card-text"> সাধারন সম্পাদক</h5>
                             <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
                             <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
-                            <a href="#" class="btn "><i class="bi bi-telephone-forward-fill"></i> {{ secretary.phone }}</a>
+                            <a href="#" class="btn "><i class="bi bi-telephone-forward-fill"></i> {{ secretary.phone }}
+                            </a>
                         </div>
                     {% endif %}
                 </div>
@@ -349,17 +350,17 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{% static 'image/admin.jpg' %}" class="d-block w-100 slide2 img-fluid" alt="...">
+                            <img src="{% static 'image/admin.jpg' %}" class="d-block w-100 slide img-fluid" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{% static 'image/bsmrh' %}" class="d-block w-100 slide2 img-fluid" alt="...">
+                            <img src="{% static 'image/bsmrh' %}" class="d-block w-100 slide img-fluid" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{% static 'image/nilkomol.jpg' %}" class="d-block w-100 slide2 img-fluid"
+                            <img src="{% static 'image/nilkomol.jpg' %}" class="d-block w-100 slide img-fluid"
                                  alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{% static 'image/gate.jpg' %}" class="d-block w-100 slide2 img-fluid" alt="...">
+                            <img src="{% static 'image/gate.jpg' %}" class="d-block w-100 slide img-fluid" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
