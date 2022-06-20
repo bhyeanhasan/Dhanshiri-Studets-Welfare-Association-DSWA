@@ -19,90 +19,111 @@
 
             <div class="col-md-3"></div>
 
-            <div class="col-md-6">
-                <div class="profile-box  p-3 px-3 m-1 ">
-                {% if user_profile.picture %}
-                    <div class="text-center">
-                        <img class=" update-pic image-fluid" src="{{ user_profile.picture.url }}">
-                    </div>
-                {% else %}
-                    <div class="text-center">
-                        <img class=" update-pic image-fluid" src="{% static 'image/profile.jpg' %}">
-                    </div>
-                {% endif %}
+
+                <div class="col-md-6" id="DivIdToPrint">
+                    <div class="profile-box  p-3 px-3 m-1 ">
+                        {% if user_profile.picture %}
+                            <div class="text-center">
+                                <img class=" update-pic image-fluid" src="{{ user_profile.picture.url }}">
+                            </div>
+                        {% else %}
+                            <div class="text-center">
+                                <img class=" update-pic image-fluid" src="{% static 'image/profile.jpg' %}">
+                            </div>
+                        {% endif %}
 
 
-                <div class="profile-body ">
-                    <div class="text-center mt-2">
-                        <h5>{{ user_profile.name }}</h5>
-                        <h6 style="color: #00a148" class="">{{ user_profile.designation }}</h6>
-                        <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
-                        <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
-                    </div>
+                        <div class="profile-body ">
+                            <div class="text-center mt-2">
+                                <h5>{{ user_profile.name }}</h5>
+                                <h6 style="color: #00a148" class="">{{ user_profile.designation }}</h6>
+                                <h6 class="card-text"> ধানসিঁড়ি ছাত্র-ছাত্রী কল্যাণ সমিতি</h6>
+                                <h6 class="card-text"> পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</h6>
+                            </div>
 
 
-                    <table class="table table-striped my-3">
+                            <table class="table table-striped my-3">
 
-                        <tbody>
+                                <tbody>
 
-                        <tr>
-                            <th><i class="bi bi-mortarboard"></i> ফ্যাকাল্টিঃ</th>
-                            <td>{{ user_profile.faculty }}</td>
-                        </tr>
-                        <tr>
-                            <th><i class="bi bi-calendar-check"></i> সেশনঃ</th>
-                            <td>{{ user_profile.session }}</td>
-                        </tr>
-                        <tr>
-                            <th><i class="bi bi-geo-alt"></i> উপজেলাঃ</th>
-                            <td>{{ user_profile.upazila }}</td>
-                        </tr>
-                        <tr>
-                            <th><i class="bi bi-signpost-split"></i> ঠিকানাঃ</th>
-                            <td>{{ user_profile.address }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col"><i class="bi bi-heart"></i> ব্লাড গ্রুপঃ</th>
-                            <td scope="col">{{ user_profile.blood }}</td>
-                        </tr>
-                        <tr>
-                            <th><i class="bi bi-telephone"></i> ফোনঃ</th>
-                            <td>{{ user_profile.phone }}</td>
-                        </tr>
-                        <tr>
-                            <th><i class="bi bi-envelope-plus"></i> ইমেইলঃ</th>
-                            <td><a href="mailto:{{ user_profile.user.email }}">{{ user_profile.user.email }}</a></td>
-                        </tr>
+                                <tr>
+                                    <th><i class="bi bi-mortarboard"></i> ফ্যাকাল্টিঃ</th>
+                                    <td>{{ user_profile.faculty }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="bi bi-calendar-check"></i> সেশনঃ</th>
+                                    <td>{{ user_profile.session }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="bi bi-geo-alt"></i> উপজেলাঃ</th>
+                                    <td>{{ user_profile.upazila }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="bi bi-signpost-split"></i> ঠিকানাঃ</th>
+                                    <td>{{ user_profile.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col"><i class="bi bi-heart"></i> ব্লাড গ্রুপঃ</th>
+                                    <td scope="col">{{ user_profile.blood }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="bi bi-telephone"></i> ফোনঃ</th>
+                                    <td>{{ user_profile.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="bi bi-envelope-plus"></i> ইমেইলঃ</th>
+                                    <td><a href="mailto:{{ user_profile.user.email }}">{{ user_profile.user.email }}</a>
+                                    </td>
+                                </tr>
 
 
-                        </tbody>
+                                </tbody>
 
-                    </table>
+                            </table>
 
-                    {% if user == user_profile.user %}
+                            {% if user == user_profile.user %}
 
-                        <div class="text-end">
-                            <a class="profile-box btn btn-danger" href="{% url 'update' %}">Edit Profile</a>
+                                <div class="text-end">
+                                    <a class="profile-box btn btn-danger" href="{% url 'update' %}">Edit Profile</a>
+                                </div>
+
+                            {% endif %}
+
+
                         </div>
 
-                    {% endif %}
 
 
+                    </div>
                 </div>
 
 
-            </div>
-            </div>
+
+
 
             <div class="col-md-3"></div>
 
 
         </div>
     </div>
+    <div id="btnhide"  style="text-align: center;margin-top: 10px;margin-bottom: 10px">
+        <input class="btn btn-block btn-success" type='button' id='btn' value='Print' onclick='printDiv();'>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
+    <script>
+        $("#btn").click(function () {
+            //Hide all other elements other than printarea.
+            $("#DivIdToPrint").show();
+            $("#Hide").hide();
+            $("#btnhide").hide();
 
+            window.print();
 
+        });
+    </script>
 {% endblock %}
 
 
